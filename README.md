@@ -1,0 +1,5 @@
+# CookieClicker
+
+Click cookies
+
+profit
