@@ -1,4 +1,4 @@
-# CookieClicker
+# AutoClickingCookieClickerClicker
 
 Click cookies
 
