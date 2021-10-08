@@ -8,13 +8,10 @@ const interface = require("readline").createInterface({
   output: process.stdout,
 });
 
-function cookieCount(x) {
-  readline.cursorTo(process.stdout, 0);
-  process.stdout.write(` Cookies clicked ${x} `);
-}
-
-let paused = false;
-let i = 0;
+// function cookieCount(x) {
+//   readline.cursorTo(process.stdout, 0);
+//   process.stdout.write(` Cookies clicked ${x} `);
+// }
 
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
@@ -36,11 +33,8 @@ let i = 0;
     }
   });
 
-  readline.cursorTo(process.stdout, 0);
-  console.log(`Commands:`);
-  console.log(`\tstop | saves and closes game`);
-  console.log(`\tpause | stop auto clicking`);
-  console.log(`\tresume | start clicking again`);
+  console.log(`\nCommands:`);
+  console.log(`\tstop | saves and closes game\n`);
 
   interface.on("line", async (input) => {
     switch (input.trim()) {
@@ -56,22 +50,11 @@ let i = 0;
         interface.close();
         process.exit();
         break;
-      case "pause":
-        paused = true;
-        break;
-      case "resume":
-        paused = false;
-        break;
     }
   });
 
-  // Imma take a break rn cause my brain is melting and I have homework
-
   await page.waitForSelector("#bigCookie");
   while (true) {
-    if (!paused) {
-      await page.click("#bigCookie");
-      i++;
-    }
+    await page.click("#bigCookie");
   }
 })();
